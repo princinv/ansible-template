@@ -11,6 +11,7 @@ With some customizations.
 
 
 ## FOLDER STRUCTURE
+
 ```markdown
 playbook-template/
 ├── collections/                 # Custom collections (if needed)
@@ -84,3 +85,18 @@ playbook-template/
 | `tests/`        | ✅ | ✅ | ✅ |
 | `vars/`         | ✅ | ✅ | ✅ |
 
+
+## Common Sections in a Playbook
+
+| **Section** | **Purpose** | **Best Practice?** |
+|------------|------------|----------------|
+| `pre_tasks` | Runs **before roles and tasks** (e.g., checking dependencies, setting up environment variables). | ✅ **Yes**, if setup tasks are required before roles. |
+| `tasks` | The **main execution block** where all playbook actions happen. | ✅ **Required** (unless using roles exclusively). |
+| `roles` | Defines **which roles to apply** to hosts. | ✅ **Yes**, if using roles for modularity. |
+| `post_tasks` | Runs **after roles and tasks** (e.g., final cleanup or notifications). | ✅ **Yes**, if post-processing is needed. |
+| `handlers` | Defines **event-driven tasks** (e.g., restart services only if a change occurs). | ✅ **Yes**, for efficient playbooks. |
+| `vars` | Defines **variables specific to this playbook**. | ✅ **Yes**, if playbook-specific variables are needed. |
+| `vars_files` | Loads **external variable files** into the playbook. | ✅ **Yes**, if variables are stored externally. |
+| `vars_prompt` | Prompts the user to enter variables interactively. | ⚠️ **Use Sparingly**, better to use `--extra-vars`. |
+| `tags` | Allows **running only specific tasks** in the playbook. | ✅ **Yes**, improves task targeting. |
+| `ignore_errors` | Lets the playbook **continue running even if a task fails**. | ⚠️ **Use Carefully**, can hide failures. |

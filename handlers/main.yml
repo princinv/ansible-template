@@ -1,1 +1,59 @@
+# handlers/main.yml
 ---
+- name: Update APT Cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Flush APT Cache
+  ansible.builtin.command: apt-get clean
+
+- name: Clear Systemd Journals
+  ansible.builtin.command: journalctl --vacuum-time=1d
+
+- name: Reload Systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Restart Network Service
+  ansible.builtin.service:
+    name: networking
+    state: restarted
+
+- name: Stop Docker Services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: stopped
+  loop:
+    - docker
+    - docker.socket
+    - containerd
+
+- name: Disable Docker Services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    enabled: no- name: Restart SSH
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
+  loop:
+    - docker
+    - docker.socket
+    - containerd
+
+- name: Mask Docker Services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    masked: yes
+  loop:
+    - docker
+    - docker.socket
+    - containerd
+
+- name: Reboot the Server
+  ansible.builtin.reboot:
+    reboot_timeout: 600
+
+- name: Restart SSH
+  ansible.builtin.service:
+    name: sshd
+    state: restarted

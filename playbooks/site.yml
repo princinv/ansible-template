@@ -1,1 +1,52 @@
-# Main playbook entry point (could include others)
+# playbooks/site.yml
+#
+# Ansible Site Playbook
+# This playbook acts as the primary entrypoint, applying all roles to configure the infrastructure
+# Author: princinv
+# Version: 1.0.0
+# Ansible Minimum Version: 2.9+
+---
+- name: Configure All Servers
+  hosts: all
+  become: true
+  gather_facts: true  # Change to false if facts are unnecessary
+  ignore_errors: false  # Change to true if failures are ignorable
+  # tags:
+  # vars:
+  # vars_files:
+  # vars_prompts:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3  # Ensures correct Python version
+
+
+  pre_tasks:
+    - name: Print a message before execution
+      ansible.builtin.debug:
+        msg: "Starting configuration for {{ inventory_hostname }}..."
+
+
+  tasks:
+    - name: Wait for SSH to become available
+      ansible.builtin.wait_for:
+        port: 22
+        host: "{{ inventory_hostname }}"
+        delay: 5  # Wait 5 seconds before checking
+        timeout: 60  # Maximum wait time
+
+    # - name: Perform main tasks here
+    #   ansible.builtin.command: echo "Working..."
+
+    # - name: Immediately run handler
+    #   meta: call_handler
+
+  # roles:
+
+
+  post_tasks:
+    - name: Print completion message
+      ansible.builtin.debug:
+        msg: "✅ Configuration completed successfully!"
+
+
+  handlers:
+    - import_tasks: handlers/all.yml

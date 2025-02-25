@@ -1,0 +1,31 @@
+---
+- name: Print messages using different methods
+  hosts: localhost
+  gather_facts: false
+  tasks:
+
+    - name: Print a normal debug message
+      ansible.builtin.debug:
+        msg: "Starting playbook execution..."
+
+    - name: Print a failure message and stop execution
+      ansible.builtin.fail:
+        msg: "Something went wrong!"
+      when: some_condition_failed
+
+    - name: Assert that a variable is set
+      ansible.builtin.assert:
+        that:
+          - my_variable is defined
+        fail_msg: "my_variable is missing!"
+
+    - name: Print a progress message while waiting
+      ansible.builtin.wait_for:
+        path: /var/log/app.log
+        timeout: 30
+      register: wait_status
+      when: service_needs_restart
+
+    - name: Pause execution for user confirmation
+      ansible.builtin.pause:
+        prompt: "Press Enter to continue"
