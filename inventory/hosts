@@ -1,5 +1,3 @@
-# Main inventory file (could be static, dynamic, etc.)[webservers]
-
 [proxmox-cluster]
 proxmox01 hl-core-proxmox=192.168.69.118
 proxmox02 hl-node02-proxmox=192.168.69.117

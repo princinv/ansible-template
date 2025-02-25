@@ -1,0 +1,1 @@
+# custom log location for bootstrap.py

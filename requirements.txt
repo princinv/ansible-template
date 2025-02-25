@@ -1,0 +1,3 @@
+molecule[docker]   # Molecule for role testing
+ansible-lint       # Linting for Ansible playbooks
+testinfra          # Infrastructure testing framework
