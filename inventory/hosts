@@ -1,0 +1,18 @@
+# Main inventory file (could be static, dynamic, etc.)[webservers]
+
+[proxmox-cluster]
+proxmox01 hl-core-proxmox=192.168.69.118
+proxmox02 hl-node02-proxmox=192.168.69.117
+proxmox03 hl-node03-proxmox=192.168.69.116
+
+[webservers]
+server01 hl-core-ubuntu=192.168.69.119
+server01 hl-node02-ubuntu=192.168.69.120
+server01 hl-node03-ubuntu=192.168.69.121
+
+[laptops]
+laptop01 rworkstation=192.168.69.100
+laptop02 rideapad=192.168.69.101
+
+# [databases]
+# dbserver1 ansible_host=192.168.1.201

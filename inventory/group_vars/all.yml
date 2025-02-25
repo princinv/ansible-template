@@ -1,0 +1,5 @@
+# Variables applied to all hosts
+
+[defaults]
+inventory = inventory/hosts
+roles_path = roles

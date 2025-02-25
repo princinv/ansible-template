@@ -1,0 +1,45 @@
+---
+# download and install dependencies (ansible galaxy)
+collections:
+# tons of useful modules for system administration, package management, networking, and various utilities.
+  - name: community.general
+    version: 4.0.0
+# SSL/TLS and cryptographic tasks
+  - name: community.crypto
+    version: 
+# networking automation
+  - name: community.network
+    version: 
+# linux admin
+  - name: ansible.posix
+    version: 
+# utilities and helpers
+  - name: ansible.utils
+    version: 
+# Jeff Geerling's role collections
+  - name: geerlingguy.docker
+    version: 
+  - name: geerlingguy.kubernetes
+    version: 
+  - name: geerlinguy.nginx
+    version: 
+  - name: geerlinguy.mysql
+    version: 
+  - name: geerlinguy.postgresql
+    version: 
+# security and compliance collections
+# OSSEC-based SIEM system
+  - name: wazuh.wazuh
+    version: 
+# hardening for Linux, SSH, and web servers
+  - name: devsec.hardening
+    version:  
+  - name: community.crowdsec
+    version: 
+# security-related automation, including SELinux and auditiong
+  - name: ansible.security
+    version: 
+# Misc
+# home assistant
+  - name: community.home_automation
+    version: 
