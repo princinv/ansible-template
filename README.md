@@ -1,10 +1,17 @@
-# ==========================================
-# ANSIBLE PLAYBOOK TEMPLATE
-# ==========================================
+  __much thanks to (@geerlingguy)[https://github.com/geerlingguy] for the great materials on using ansible.__
 
-# ------------------------------------------
-# FOLDER STRUCTURE
-# --
+**WIP**
+
+A complete template of default digestible directory structures in Ansible playbook. 
+
+With some customizations. 
+
+## RESOURCES
+
+
+
+## FOLDER STRUCTURE
+```markdown
 playbook-template/
 ├── collections/                 # Custom collections (if needed)
 ├── files/                       # Static files (configs, certs, etc.)
@@ -53,26 +60,27 @@ playbook-template/
 ├── bootstrap.sh                 # Ensure environment is ready
 ├── requirements.yml             # Ansible Galaxy role dependencies
 ├── requirements.txt             # Python dependencies
+```
 
-## SUBFOLDERS
 
-### ROLES 
-
+## Directory Information
 
 | Directory         | **Role-Level Only** | **Playbook-Level Only** | **Both** |
 |------------------|------------------|------------------|------------------|
-| `meta/`         | ✅ | ❌ | ❌ |
+| `collections/`   | ❌ | ✅ | ❌ |
 | `defaults/`     | ✅ | ❌ | ❌ |
-| `tasks/`        | ✅ | ❌ | ❌ |
-| `molecule/`     | ✅ | ❌ | ❌ |
-| `inventory/`    | ❌ | ✅ | ❌ |
 | `files/`        | ❌ | ✅ | ❌ |
-| `plugins/`      | ❌ | ✅ | ❌ |
-| `module_utils/` | ❌ | ✅ | ❌ |
-| `playbooks/`    | ❌ | ✅ | ❌ |
-| `roles/`        | ❌ | ✅ | ❌ |
-| `library/`      | ✅ | ✅ | ✅ |
 | `handlers/`     | ✅ | ✅ | ✅ |
+| `inventory/`    | ❌ | ✅ | ❌ |
+| `library/`      | ✅ | ✅ | ✅ |
+| `meta/`         | ✅ | ❌ | ❌ |
+| `module_utils/` | ❌ | ✅ | ❌ |
+| `molecule/`     | ✅ | ❌ | ❌ |
+| `playbooks/`    | ❌ | ✅ | ❌ |
+| `plugins/`      | ❌ | ✅ | ❌ |
+| `roles/`        | ❌ | ✅ | ❌ |
+| `tasks/`        | ✅ | ❌ | ❌ |
 | `templates/`    | ✅ | ✅ | ✅ |
 | `tests/`        | ✅ | ✅ | ✅ |
 | `vars/`         | ✅ | ✅ | ✅ |
+
