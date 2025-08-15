@@ -1,0 +1,8 @@
+# roles/role_name/vars/main.yml
+
+# ==========================================
+# ROLE VARIABLES
+# ==========================================
+# Role-specific variables (higher priority than defaults).
+# These should be static values that generally do not need
+# to be overridden by the user in most deployments.

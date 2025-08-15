@@ -1,15 +1,18 @@
 # Ansible Tests Directory
+roles/role_name/test/README.md
 
-## 📌 What is the `tests/` Directory?
-The `tests/` directory in an Ansible project or role is used to **store test cases and validation scripts** to ensure that playbooks and roles work as expected.
+## What is the `tests/` Directory?
 
-## 📦 Why Use the `tests/` Directory?
-- 🛠 **Automates validation** of roles and playbooks before deployment.
-- 🔄 **Prevents configuration drift** by catching issues early.
-- 🚀 **Enhances reliability** through structured testing.
+The `tests/` directory in an Ansible project or role is used to **store test cases and validation scripts**.
 
-## 📄 How to Structure the `tests/` Directory
-A typical `tests/` directory contains:
+## Why Use the `tests/` Directory?
+
+* Automates validation of roles and playbooks.
+* Prevents configuration drift.
+* Enhances reliability through structured testing.
+
+## How to Structure the `tests/` Directory
+
 ```
 tests/
 ├── test.yml           # Ansible test playbook
@@ -18,10 +21,10 @@ tests/
 ├── molecule/          # Molecule testing framework (if used)
 ```
 
-## 🔍 Creating an Ansible Test Playbook
-A simple test playbook ensures that a role executes without errors.
+## Creating an Ansible Test Playbook
 
-### 🔹 Example: `tests/test.yml`
+Example: `tests/test.yml`
+
 ```yaml
 - name: Test Role Execution
   hosts: all
@@ -30,15 +33,16 @@ A simple test playbook ensures that a role executes without errors.
     - example_role
 ```
 
-Run the test playbook:
+Run:
+
 ```bash
 ansible-playbook tests/test.yml --check --diff
 ```
 
-## 🚀 Using TestInfra for Validation
-TestInfra allows Python-based assertions to verify system state.
+## Using TestInfra for Validation
 
-### 🔹 Example: `tests/testinfra/test_default.py`
+Example: `tests/testinfra/test_default.py`
+
 ```python
 import testinfra
 
@@ -52,16 +56,15 @@ def test_nginx_running(host):
     assert nginx.is_enabled
 ```
 
-Run TestInfra tests:
+Run:
+
 ```bash
 pytest -v tests/testinfra/
 ```
 
-## 🏆 Best Practices
-- **Use `tests/` for structured validation** before applying roles/playbooks in production.
-- **Combine Ansible check mode (`--check`) with test playbooks** for dry runs.
-- **Use Molecule for role testing** to automate execution in isolated environments.
-- **Ensure test cases are meaningful**—focus on critical services and configurations.
+## Best Practices
 
-The `tests/` directory is essential for maintaining reliable and reproducible Ansible automation workflows.
-
+* Use `tests/` for structured validation.
+* Combine Ansible check mode with test playbooks.
+* Use Molecule for isolated testing.
+* Focus tests on critical services/configurations.

@@ -1,0 +1,10 @@
+# roles/role_name/tests/inventory
+
+# ==========================================
+# TEST INVENTORY
+# ==========================================
+# Minimal static inventory for standalone role testing.
+# Used with: ansible-playbook -i tests/inventory tests/test.yml
+
+[all]
+localhost ansible_connection=local

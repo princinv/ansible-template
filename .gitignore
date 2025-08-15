@@ -1,0 +1,66 @@
+# .gitignore
+
+# ==========================================
+# ANSIBLE GITIGNORE
+# ==========================================
+#
+# Purpose:
+#   Ignore build artifacts, local caches, sensitive files, and
+#   regeneratable environments from being committed to Git.
+#
+# Notes:
+#   - Keep .gitignore in sync with .yamllint/.ansible-lint exclude paths.
+#   - Safe to regenerate ignored items from source or config files.
+# 
+
+# ----- Archives / disk images -----
+*.iso
+*.img
+*.qcow2
+*.vmdk
+*.tar
+*.tar.*
+*.zip
+*.7z
+*.deb
+*.rpm
+*.bin
+
+# ----- Ansible artifacts -----
+*.retry
+.vault_pass
+user_config.yml
+
+# ----- Python artifacts -----
+*/__pycache__/
+*.pyc
+.cache
+
+# ----- Virtual environments -----
+venv/
+.venv/
+*/venv/
+*/.venv/
+
+# ----- Molecule / test environments -----
+.molecule/
+*/molecule/*/venv/
+*/molecule/*/.venv/
+
+# Allow base template's molecule folder in .role.tmpl
+!roles/.role.tmpl/molecule/
+!roles/.role.tmpl/molecule/**/*
+
+# ----- Archive folders (local storage only) -----
+.archive/master-playbook/library/gluster-ansible
+.archive/master-playbook/roles/gg-role-firewall
+.archive/master-playbook/roles/gg-role-glusterfs
+# .archive/ubuntu\ autoinstall
+# .archive/recovery\ drive
+# .archive/playbook
+# .archive/master-playbook
+# .archive/master\ playbook
+# .archive/ansible-master
+
+# ----- galaxy collections -----
+collections/*

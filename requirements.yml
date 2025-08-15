@@ -1,48 +1,193 @@
 ---
-# download and install dependencies (ansible galaxy)
+# requirements.yml
+
+# ==========================================
+# ANSIBLE GALAXY REQUIREMENTS
+# ==========================================
+# Purpose:
+#   Declare Galaxy dependencies (collections & roles) needed by this repo.
+#
+# Install:
+#   ansible-galaxy install -r requirements.yml
+#
+# Notes:
+#   - Pin versions for reproducible builds. Omit 'version' to track latest.
+#   - Collections install to ~/.ansible/collections (or your configured path).
+#   - Roles install to roles/ (or your configured path).
+# 
+
 collections:
-# tons of useful modules for system administration, package management, networking, and various utilities.
+  # ------------------------------------------
+  # Core utilities & general-purpose modules
+  # ------------------------------------------
   - name: community.general
-#     version: 4.0.0
-# TODO: version control all collections
-# SSL/TLS and cryptographic tasks
-  - name: community.crypto
-#     version: 
-# networking automation
-  - name: community.network
-#     version: 
-# linux admin
-  - name: ansible.posix
-#     version: 
-# utilities and helpers
+    version: 10.4.0
   - name: ansible.utils
-#     version: 
-# security and compliance collections
-# OSSEC-based SIEM system
-  - name: wazuh.wazuh
-#     version: 
-# hardening for Linux, SSH, and web servers
+    version: 5.1.2
+
+  # ------------------------------------------
+  # Molecule helpers (for role testing)
+  # ------------------------------------------
+  - name: community.molecule
+    version: 0.1.0
+
+  # ------------------------------------------
+  # Crypto / TLS
+  # ------------------------------------------
+  - name: community.crypto
+    version: 2.25.0
+
+  # ------------------------------------------
+  # Networking (automation, DNS, SNMP, netcommon)
+  # ------------------------------------------
+  - name: community.network
+    version: 5.1.0
+  - name: community.dns
+    version: 3.2.1
+  - name: ansible.network
+    version: 4.0.0
+  - name: ansible.netcommon
+    version: 7.1.0
+  - name: ansible.snmp
+    version: 3.0.0
+
+  # ------------------------------------------
+  # Linux admin / POSIX / Event-Driven Ansible
+  # ------------------------------------------
+  - name: ansible.posix
+    version: 2.0.0
+  - name: ansible.eda
+    version: 2.5.0
+
+  # ------------------------------------------
+  # Containers
+  # ------------------------------------------
+  - name: community.docker
+    version: 4.4.0
+
+  # ------------------------------------------
+  # Security & compliance
+  # ------------------------------------------
   - name: devsec.hardening
-#     version:  
-  - name: community.crowdsec
-#     version: 
-# security-related automation, including SELinux and auditiong
+    version: 10.3.0
   - name: ansible.security
-#     version: 
-# Misc
-# home assistant
-  - name: community.home_automation
-#     version: 
+    version: 3.0.0
+  - name: darkdecoy.wazuh
+    version: 1.0.0
+
+  # ------------------------------------------
+  # Storage / Gluster
+  # ------------------------------------------
+  - name: gluster.gluster
+    version: 1.0.2
+
+  # ------------------------------------------
+  # Windows (optional)
+  # ------------------------------------------
+  - name: ansible.windows
+    version: 2.7.0
+
+  # ------------------------------------------
+  # Misc / SCM / Hub / Workshops (optional)
+  # ------------------------------------------
+  - name: ansible.scm
+    version: 3.0.0
+  - name: ansible.hub
+    version: 1.0.0
+  - name: ansible.workshops
+    # version: 2.0.0
 
 roles:
-# Jeff Geerling's role collections
+  # ------------------------------------------
+  # Geerlingguy core roles
+  # ------------------------------------------
+  - name: geerlingguy.ansible
+    version: 2.3.0
   - name: geerlingguy.docker
-#     version: 
-  - name: geerlingguy.kubernetes
-#     version: 
-  - name: geerlinguy.nginx
-#     version: 
-  - name: geerlinguy.mysql
-#     version: 
-  - name: geerlinguy.postgresql
-#     version: 
+    version: 7.4.5
+  - name: geerlingguy.containerd
+    version: 1.3.1
+  # - name: geerlingguy.glusterfs
+  #   version: 3.1.2
+  - name: geerlingguy.nfs
+    version: 2.1.0
+  - name: geerlingguy.git
+    # version: 3.0.7
+  - name: geerlingguy.postfix
+    version: 2.0.0
+  - name: geerlingguy.firewall
+    version: 2.6.0
+  - name: geerlingguy.clamav
+    version: 2.1.0
+  - name: geerlingguy.ntp
+    version: 2.7.0
+  - name: geerlingguy.nodejs
+    version: 7.0.0
+  - name: geerlingguy.swap
+    version: 1.2.0
+  - name: geerlingguy.security
+    version: 2.4.0
+  - name: geerlingguy.repo-epel
+    version: 3.1.1
+  - name: geerlingguy.repo-remi
+    version: 2.1.0
+
+  # ------------------------------------------
+  # OS tuning / services
+  # ------------------------------------------
+  - name: igor_nikiforov.sysctl
+    # version: 1.0.0
+  - name: igor_nikiforov.journald
+    # version: 1.0.0
+  - name: 0x0i.systemd
+    # version: 0.3.5
+
+  # ------------------------------------------
+  # Networking / name resolution
+  # ------------------------------------------
+  - name: ahuffman.resolv
+    version: 1.3.2
+  - name: mrlesmithjr.netplan
+    # version: 0.4.2
+  - name: ajsalminen.hosts
+
+  # ------------------------------------------
+  # Telemetry / agents
+  # ------------------------------------------
+  - name: dj-wasabi.telegraf
+    version: 0.14.1
+  - name: libyanspider.wazuh_agent_role
+    # version: 1.0.3
+
+  # ------------------------------------------
+  # Users / bootstrap / miscellany
+  # ------------------------------------------
+  - name: singleplatform-eng.users
+    # version: 1.2.6
+  - name: buluma.bootstrap
+    # version: 24.7.19
+  - name: robertdebock.bootstrap
+    # version: 7.1.0
+  # - name: evrardjp.keepalived
+  #   version: 8.2.0
+
+  # ------------------------------------------
+  # macOS (optional)
+  # ------------------------------------------
+  - name: elliotweiser.osx-command-line-tools
+    version: 2.3.0
+
+  # ------------------------------------------
+  # Storage / ZFS
+  # ------------------------------------------
+  - name: mrlesmithjr.zfs
+
+
+# https://galaxy.ansible.com/ui/standalone/roles/aleemladha/wazuh_server_install/
+# https://galaxy.ansible.com/ui/standalone/roles/aleemladha/ludus_wazuh_agent/
+# https://galaxy.ansible.com/ui/standalone/roles/buluma/core_dependencies/documentation/
+# https://galaxy.ansible.com/ui/standalone/roles/buluma/buildtools/
+# https://galaxy.ansible.com/ui/standalone/namespaces/604/?page=2&page_size=10&sort=-created
+
+
+

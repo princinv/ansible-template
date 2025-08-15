@@ -1,3 +1,14 @@
-molecule[docker]   # Molecule for role testing
-ansible-lint       # Linting for Ansible playbooks
+# requirements.txt
+
+# ==========================================
+# VENV DEPENDENCIES
+# ==========================================
+# Installed into this project's Python virtual environment.
+# These packages are required for running playbooks,
+# testing roles, and linting Ansible code.
+# ==========================================
+
+ansible-core       # Core Ansible CLI & ansible-galaxy
+molecule[docker]   # Role testing via Molecule with Docker driver
+ansible-lint       # Linting for Ansible playbooks and roles
 testinfra          # Infrastructure testing framework

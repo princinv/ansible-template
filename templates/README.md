@@ -1,26 +1,29 @@
 # Ansible Templates Directory
+roles/role_name/templates/README.md
 
-## 📌 What is the `templates/` Directory?
-The `templates/` directory in an Ansible project or role is used to **store Jinja2 template files** that allow for dynamic content generation.
+## What is the `templates/` Directory?
 
-## 📦 Why Use the `templates/` Directory?
-- 🛠 **Dynamically generates configuration files** using variables.
-- 🔄 **Enables flexible automation** by adapting templates to different environments.
-- 🚀 **Reduces redundancy** by allowing reuse of template files across multiple systems.
+The `templates/` directory in an Ansible project or role is used to **store Jinja2 template files** for dynamic content generation.
 
-## 📄 How to Structure the `templates/` Directory
-A typical `templates/` directory contains Jinja2 (`.j2`) template files:
+## Why Use the `templates/` Directory?
+
+* Dynamically generates configuration files using variables.
+* Enables flexible automation by adapting templates to different environments.
+* Reduces redundancy by allowing reuse of template files.
+
+## How to Structure the `templates/` Directory
+
 ```
 templates/
 ├── nginx.conf.j2         # Nginx configuration template
-├── motd.j2              # Dynamic Message of the Day (MOTD)
-├── app_config.yaml.j2   # Application-specific configuration
+├── motd.j2               # Dynamic MOTD
+├── app_config.yaml.j2    # Application configuration
 ```
 
-## 🔍 Creating a Jinja2 Template
-Templates use **Jinja2 syntax** to insert dynamic values.
+## Creating a Jinja2 Template
 
-### 🔹 Example: `templates/nginx.conf.j2`
+Example: `templates/nginx.conf.j2`
+
 ```nginx
 server {
     listen 80;
@@ -32,10 +35,8 @@ server {
 }
 ```
 
-## 🚀 Using Templates in Playbooks
-The `template` module is used to process Jinja2 templates and copy them to remote hosts.
+## Using Templates in Playbooks
 
-### 🔹 Example: Applying a Template in a Playbook
 ```yaml
 - name: Deploy Nginx Configuration
   ansible.builtin.template:
@@ -45,10 +46,9 @@ The `template` module is used to process Jinja2 templates and copy them to remot
     group: root
     mode: '0644'
 ```
-✅ **Ansible replaces `{{ server_name }}`, `{{ backend_host }}`, and `{{ backend_port }}` with actual values.**
 
-### 🔹 Example: Supplying Variables to a Template
-Variables can be defined in `group_vars/`, `host_vars/`, or inline:
+Example with Variables:
+
 ```yaml
 - name: Apply Nginx Template with Variables
   hosts: web_servers
@@ -63,15 +63,10 @@ Variables can be defined in `group_vars/`, `host_vars/`, or inline:
         dest: /etc/nginx/nginx.conf
 ```
 
-## 🏆 Best Practices
-- **Use `.j2` as the file extension** to distinguish templates from static files.
-- **Keep template logic simple**—avoid complex conditionals when possible.
-- **Use default values in variables** to prevent undefined errors.
-- **Ensure proper permissions** when deploying sensitive files.
-- **Validate rendered templates** before applying them to production systems:
-  ```bash
-  ansible-playbook --check --diff playbook.yml
-  ```
+## Best Practices
 
-The `templates/` directory is a powerful tool in Ansible automation, enabling dynamic configuration management tailored to different environments.
-
+* Use `.j2` extension for templates.
+* Keep template logic simple.
+* Use default values to avoid undefined errors.
+* Apply correct permissions.
+* Validate templates before production deployment.

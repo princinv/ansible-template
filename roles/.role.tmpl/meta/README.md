@@ -1,22 +1,25 @@
 # Ansible Meta Directory
+roles/role_name/meta/README.md
 
-## 📌 What is the `meta/` Directory?
-The `meta/` directory in an Ansible role is used to **store metadata about the role**, such as dependencies, author information, and role versions.
+## What is the `meta/` Directory?
 
-## 📦 Why Use the `meta/` Directory?
-- 🛠 **Defines role dependencies** to automatically install required roles.
-- 🔄 **Provides metadata for Ansible Galaxy** when sharing roles.
-- 🚀 **Ensures compatibility** by specifying minimum Ansible versions.
+The `meta/` directory in an Ansible role is used to **store metadata about the role**.
 
-## 📄 How to Structure the `meta/` Directory
-A typical `meta/` directory contains a single YAML file:
+## Why Use the `meta/` Directory?
+
+* Defines role dependencies.
+* Provides metadata for Ansible Galaxy.
+* Ensures compatibility.
+
+## Structure
+
 ```
 meta/
-├── main.yml  # Role metadata and dependencies
+├── main.yml
 ```
 
-## 🔍 Defining Role Metadata
-### 🔹 Example: `meta/main.yml`
+## Example `meta/main.yml`
+
 ```yaml
 galaxy_info:
   author: your_name
@@ -38,26 +41,9 @@ dependencies:
   - role: common
 ```
 
-## 🚀 How Ansible Uses the `meta/` Directory
-### 🔹 Installing Role Dependencies
-If a role has dependencies listed in `meta/main.yml`, they can be installed automatically:
-```bash
-ansible-galaxy install -r requirements.yml
-```
+## Best Practices
 
-### 🔹 Specifying Role Dependencies in `requirements.yml`
-```yaml
-roles:
-  - name: example_role
-    src: https://github.com/example/example_role.git
-    version: main
-```
-
-## 🏆 Best Practices
-- **Define dependencies** explicitly to avoid missing requirements.
-- **Include meaningful tags** for Ansible Galaxy to improve discoverability.
-- **Specify supported platforms** to clarify role compatibility.
-- **Keep metadata up to date** when modifying the role.
-
-The `meta/` directory ensures that Ansible roles are well-documented, compatible, and properly structured for sharing and automation.
-
+* Define dependencies explicitly.
+* Include meaningful tags.
+* Specify supported platforms.
+* Keep metadata updated.

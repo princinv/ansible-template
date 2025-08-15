@@ -1,0 +1,11 @@
+# roles/role_name/tests/test.yml
+
+# ==========================================
+# ROLE TEST PLAYBOOK
+# ==========================================
+# Minimal playbook to test this role in isolation.
+
+- name: Test role_name role
+  hosts: all
+  roles:
+    - role: .

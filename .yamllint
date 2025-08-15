@@ -1,0 +1,48 @@
+# .yamllint
+
+# ==========================================
+# YAMLLINT CONFIG
+# ==========================================
+# Purpose:
+#   Project-wide YAML linting rules for playbooks, roles, and CI.
+#
+# Notes:
+#   - Uses the built-in 'default' config as a base.
+#   - Disables 'document-start' so '---' is optional in most files.
+#   - Keeps line length reasonable without blocking (warning at 120).
+#   - Enforces consistent indentation and trims trailing spaces.
+#
+# Run locally:
+#   yamllint .
+# ==========================================
+
+extends: default
+
+rules:
+  # ----- Formatting & readability -----
+  line-length:
+    max: 120
+    level: warning
+
+  trailing-spaces: enable
+
+  new-lines:
+    type: unix
+
+  indentation:
+    indent-sequences: consistent
+    check-multi-line-strings: false
+
+  # ----- Semantics & style -----
+  truthy:
+    level: warning
+
+  # Allow missing '---' at top of files; we add it only to top-level playbooks.
+  document-start: disable
+
+# Paths to ignore for speed and noise
+ignore: |
+  .git/
+  .venv/
+  .molecule/
+  */molecule/*/venv/

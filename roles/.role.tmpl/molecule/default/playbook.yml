@@ -1,5 +1,12 @@
----
-- name: Converge
+# roles/role_name/molecule/default/playbook.yml
+
+# ==========================================
+# MOLECULE CONVERGE PLAYBOOK
+# ==========================================
+# Playbook executed by Molecule to test the role
+
+- name: Test role
   hosts: all
+  become: true
   roles:
-    - common
+    - role: role_name

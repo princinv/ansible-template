@@ -1,1 +1,25 @@
----
+# /roles/role_name/tasks/main.yml
+
+# ==========================================
+# ROLE TASKS
+# ==========================================
+# Purpose:
+#   Serves as the primary entry point for all tasks in this role.
+#   Typically includes or imports other task files to maintain
+#   a modular, organized structure.
+#
+# Guidelines:
+#   - Keep this file minimal—use `include_tasks` or `import_tasks`
+#     to bring in logically grouped task files (e.g., install.yml,
+#     configure.yml, service.yml).
+#   - Ensure task names are descriptive for clear Ansible output.
+#   - Maintain idempotence in all tasks to avoid unnecessary changes.
+#   - Use conditional includes for environment- or platform-specific logic.
+#
+# Notes:
+#   Variables for this role are defined in:
+#     - defaults/main.yml (low priority, overridable)
+#     - vars/main.yml (higher priority, static role values)
+#
+# Related Docs:
+#   https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html

@@ -1,1 +1,41 @@
-# Metadata and dependency information
+# roles/role_name/meta/main.yml
+
+# ==========================================
+# ROLE META
+# ==========================================
+# Purpose:
+#   Defines Ansible Galaxy metadata for the role, including:
+#     - Author & license info
+#     - Minimum Ansible version
+#     - Supported platforms
+#     - Galaxy tags
+#     - External role dependencies
+#
+# Notes:
+#   This file is required for publishing to Ansible Galaxy.
+#   `dependencies` can include role names or Galaxy install refs.
+# 
+
+galaxy_info:
+  author: Riley Deans
+  description: Configure unattended_media in homelab
+  company: ""
+  license: MIT
+  min_ansible_version: "2.14"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+        - focal
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+
+  galaxy_tags:
+    - homelab
+    - automation
+    - unattended_media
+
+dependencies: []

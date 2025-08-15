@@ -1,1 +1,17 @@
-# Role default variables (lowest priority)
+# roles/role_name/defaults/main.yml
+
+# ==========================================
+# ROLE DEFAULT VARIABLES
+# ==========================================
+# Purpose:
+#   Defines default variables for this role.
+#   Defaults have the lowest precedence in Ansible
+#   and can be overridden by vars in:
+#     - vars/main.yml
+#     - playbook vars
+#     - extra-vars (-e)
+#
+# Notes:
+#   Keep only safe, generic values here.
+#   Avoid secrets or environment-specific settings.
+# 

@@ -1,0 +1,46 @@
+# ==========================================
+# ANSIBLE-LINT CONFIG
+# ==========================================
+# Purpose:
+#   Lint Ansible playbooks, roles, and collections against best practices.
+#
+# Profile:
+#   - Uses 'production' profile for stricter checks.
+#   - Keeps certain rules as warnings instead of errors.
+#   - Skips select rules to match project style.
+#
+# Run locally:
+#   ansible-lint
+# ==========================================
+
+profile: production
+
+# Rules to warn on but not fail
+warn_list:
+  - experimental  # keep as warnings, not hard failures
+
+# Rules to skip entirely
+skip_list:
+  - fqcn-builtins           # allow short module names
+  - yaml[line-length]       # manage via yamllint instead
+  - var-naming[no-role-prefix]  # relax role var prefix rule
+
+# File kinds to check
+kinds:
+  - yaml
+
+# Output formatting
+parseable: true
+
+# Use built-in default rules
+use_default_rules: true
+
+# Paths to exclude from linting
+exclude_paths:
+  - .git/
+  - .venv/
+  - .molecule/
+  - roles/.role.tmpl/  # don’t lint the template skeleton
+
+# Mock roles (empty unless you need to fake external roles)
+mock_roles: []

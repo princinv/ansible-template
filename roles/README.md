@@ -1,38 +1,50 @@
 # Ansible Roles Directory
+roles/README.md
 
-## 📌 What is the `roles/` Directory?
-The `roles/` directory in an Ansible project is used to **store reusable role definitions** that contain tasks, handlers, templates, variables, and other components necessary for automation.
+## What is the `roles/` Directory?
 
-## 📦 Why Use the `roles/` Directory?
-- 🛠 **Encapsulates automation logic** into structured, reusable components.
-- 🔄 **Separates concerns** by organizing tasks, variables, and templates per role.
-- 🚀 **Enables modular automation** that can be applied across different playbooks.
+The `roles/` directory in an Ansible project stores **reusable role definitions**. Each role is a self-contained unit that can include tasks, handlers, templates, variables, and other components needed for automation.
 
-## 📄 How to Structure the `roles/` Directory
-A typical `roles/` directory contains multiple structured roles:
+## Why Use the `roles/` Directory?
+
+* **Encapsulates automation logic** into structured, reusable components.
+* **Separates concerns** by organizing tasks, variables, and templates per role.
+* **Enables modular automation** that can be applied across multiple playbooks.
+
+## Structure of the `roles/` Directory
+
+A typical `roles/` directory contains multiple structured roles, each following the same internal layout:
+
 ```
 roles/
-├── common/              # Base role for system-wide configurations
-│   ├── tasks/          # Main role logic
-│   │   ├── main.yml    # Auto-loaded task file
-│   ├── handlers/       # Handlers for restarting services
-│   ├── templates/      # Jinja2 templates for dynamic configs
-│   ├── files/          # Static files to be copied
-│   ├── vars/           # Role-specific variables
-│   ├── defaults/       # Default variable values
-│   ├── meta/           # Role metadata (dependencies, author info)
-│   ├── tests/          # Automated tests for the role
-│   ├── molecule/       # Molecule testing framework for the role
+├── common/              # Example role for system-wide configurations
+│   ├── defaults/        # Default variable values (lowest precedence)
+│   ├── vars/            # Role-specific variables (higher precedence)
+│   ├── tasks/           # Main role logic
+│   │   ├── main.yml     # Auto-loaded task file
+│   ├── handlers/        # Handlers for event-driven actions
+│   ├── templates/       # Jinja2 templates for dynamic configs
+│   ├── files/           # Static files to be copied to hosts
+│   ├── library/         # Custom modules for this role
+│   ├── meta/            # Role metadata (dependencies, author info)
+│   ├── molecule/        # Molecule testing framework for the role
+│   ├── tests/           # Automated tests for the role
+│   ├── docs/            # Role-specific documentation
+│   └── README.md        # Role-level documentation
 ```
 
-## 🔍 Creating a Role
-Roles are created using the `ansible-galaxy` command:
+## Creating a Role
+
+Roles can be created with the `ansible-galaxy` command:
+
 ```bash
 ansible-galaxy init roles/example_role
 ```
-This generates a structured role skeleton inside `roles/`.
 
-### 🔹 Example: `roles/common/tasks/main.yml`
+This generates a role skeleton with the correct directory structure.
+
+### Example: `roles/common/tasks/main.yml`
+
 ```yaml
 - name: Ensure Nginx is installed
   ansible.builtin.apt:
@@ -46,8 +58,10 @@ This generates a structured role skeleton inside `roles/`.
     enabled: true
 ```
 
-## 🚀 Using Roles in Playbooks
+## Using Roles in Playbooks
+
 Once defined, roles can be included in playbooks:
+
 ```yaml
 - name: Apply roles to servers
   hosts: all
@@ -58,11 +72,12 @@ Once defined, roles can be included in playbooks:
     - monitoring
 ```
 
-## 🏆 Best Practices
-- **Use `defaults/` for role-wide variable defaults** to keep playbooks flexible.
-- **Define `meta/main.yml`** to specify dependencies between roles.
-- **Organize tasks logically** inside `tasks/main.yml` and split complex logic into separate files.
-- **Test roles using Molecule** to ensure reliability before deployment.
+## Best Practices
 
-The `roles/` directory is the foundation of scalable Ansible automation, allowing efficient reuse and maintainability across multiple projects.
+* **Use `defaults/` for role-wide defaults** to keep playbooks flexible.
+* **Document role variables** in `defaults/main.yml` and `vars/main.yml`.
+* **Define `meta/main.yml`** to specify dependencies.
+* **Organize tasks logically** in `tasks/main.yml` and split complex logic into smaller files.
+* **Test roles with Molecule** to ensure reliability before deployment.
 
+The `roles/` directory is the foundation of scalable Ansible automation, enabling efficient reuse, maintainability, and consistency across multiple projects.

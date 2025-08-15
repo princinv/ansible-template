@@ -1,0 +1,36 @@
+---
+# roles/unattended_media/molecule/molecule.yml
+
+# ==========================================
+# MOLECULE CONFIGURATION
+# ==========================================
+# Purpose:
+#   Defines Molecule test scenario configuration
+#   for this role, including:
+#     - Dependency management
+#     - Driver configuration
+#     - Test platforms and provisioning
+#     - Verification method
+#
+# Notes:
+#   Adjust image/platform as needed for different
+#   OS versions or test requirements.
+#
+
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: molecule-common
+    image: "geerlingguy/docker-ubuntu2204-ansible:latest"
+    privileged: true
+    command: "/lib/systemd/systemd"
+    groups:
+      - common
+provisioner:
+  name: ansible
+  playbooks:
+    converge: playbook.yml
+verifier:
+  name: ansible

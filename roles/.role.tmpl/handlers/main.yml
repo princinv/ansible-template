@@ -1,1 +1,13 @@
-# Handlers (e.g., service restarts) for this role
+# roles/role_name/handlers/main.yml
+
+# ==========================================
+# ROLE HANDLERS
+# ==========================================
+# Purpose:
+#   Defines task handlers for this role.
+#   Handlers are triggered by the `notify` directive in tasks.
+#   Common uses include restarting services, reloading configs, etc.
+#
+# Notes:
+#   This file is currently empty — add handlers as needed.
+# 
